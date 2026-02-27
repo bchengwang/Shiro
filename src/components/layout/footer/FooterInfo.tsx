@@ -4,8 +4,6 @@ import type { JSX } from 'react'
 import { fetchAggregationData } from '~/app/(app)/api'
 import { IonIosArrowDown } from '~/components/icons/arrow'
 import { SubscribeTextButton } from '~/components/modules/subscribe/SubscribeTextButton'
-import { FloatPopover } from '~/components/ui/float-popover'
-import { MarkdownLink } from '~/components/ui/link'
 import { clsxm } from '~/lib/helper'
 import { getQueryClient } from '~/lib/query-client.server'
 import { queries } from '~/queries/definition'
@@ -111,7 +109,7 @@ const Divider: Component = ({ className }) => {
 const PoweredBy: Component = ({ className }) => {
   return (
     <span className={className}>
-      Powered by{' '}
+      {/* Powered by{' '}
       <StyledLink href="https://github.com/mx-space" target="_blank">
         Mix Space
       </StyledLink>
@@ -141,7 +139,7 @@ const PoweredBy: Component = ({ className }) => {
           </MarkdownLink>
         )}
       </FloatPopover>
-      .
+      .*/}
     </span>
   )
 }
@@ -200,9 +198,9 @@ const FooterBottom = async () => {
             <Divider className="hidden md:inline" />
           </SubscribeTextButton>
         </span>
-        <span className="mt-3 block md:mt-0 md:inline">
+        {/*<span className="mt-3 block md:mt-0 md:inline">
           Stay hungry. Stay foolish.
-        </span>
+        </span>*/}
       </div>
       <div>
         <PoweredBy className="my-3 block md:my-0 md:inline" />

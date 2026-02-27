@@ -15,7 +15,7 @@
     "dev": "cross-env NODE_ENV=development next dev -p 2323 --webpack",
     "dev:turbo": "cross-env NODE_ENV=development next dev -p 2323 --turbopack",
     "lint": "eslint --fix",
-    "prepare": "pnpm exec simple-git-hooks && test -f .env || cp .env.template .env",
+    "prepare": "pnpm exec simple-git-hooks && test -f .env || cp .env .env",
     "prod:pm2": "cross-env NODE_ENV=production pm2 restart ecosystem.config.cjs",
     "prod:reload": "pm2 reload ecosystem.config.cjs",
     "prod:stop": "pm2 stop ecosystem.config.cjs",
