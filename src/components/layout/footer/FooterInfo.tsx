@@ -201,12 +201,8 @@ const FooterBottom = async () => {
         {/*<span className="mt-3 block md:mt-0 md:inline">
           Stay hungry. Stay foolish.
         </span>*/}
-      </div>
-      <div>
-        <PoweredBy className="my-3 block md:my-0 md:inline" />
         {icp && (
           <>
-            <Divider className="hidden md:inline" />
             <StyledLink href={icp.link} target="_blank" rel="noreferrer">
               {icp.text}
             </StyledLink>
@@ -219,18 +215,6 @@ const FooterBottom = async () => {
           <Divider className="hidden md:inline" />
         )}
         <GatewayInfo />
-        {/* {!!lastVisitor && (
-          <>
-            <Divider />
-            <span>
-              最近访客来自&nbsp;
-              {lastVisitor.flag}&nbsp;
-              {[lastVisitor.city, lastVisitor.country]
-                .filter(Boolean)
-                .join(', ')}
-            </span>
-          </>
-        )} */}
       </div>
     </div>
   )
