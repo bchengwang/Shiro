@@ -120,8 +120,9 @@ const Hero = () => {
       const randomIndex = Math.floor(Math.random() * sayings.length)
       setCurrentSaying(sayings[randomIndex])
     }
+    pickRandom()
 
-    const timer = setInterval(pickRandom, 1000 * 30)
+    const timer = setInterval(pickRandom, 1000 * 60)
 
     return () => clearInterval(timer)
   }, [sayings])
