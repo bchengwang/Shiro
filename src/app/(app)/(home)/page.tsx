@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import { m } from 'motion/react'
 import Image from 'next/image'
 import type * as React from 'react'
-import { createElement } from 'react'
+import { createElement, useEffect, useState } from 'react'
 
 import { ErrorBoundary } from '~/components/common/ErrorBoundary'
 import {
@@ -102,8 +102,39 @@ const Hero = () => {
     title.template.reduce((acc, cur) => {
       return acc + (cur.text?.length || 0)
     }, 0) * 50
+
+  const { data: sayings } = useQuery({
+    queryKey: ['sayings'],
+    queryFn: () => apiClient.proxy.snippets.saying.sayings.get<string[]>(),
+    staleTime: 1000 * 60 * 10,
+  })
+
+  const [currentSaying, setCurrentSaying] = useState(
+    '当第一颗卫星飞向大气层外，我们便以为自己终有一日会征服宇宙。',
+  )
+
+  useEffect(() => {
+    if (!sayings?.length) return
+
+    const pickRandom = () => {
+      const randomIndex = Math.floor(Math.random() * sayings.length)
+      setCurrentSaying(sayings[randomIndex])
+    }
+
+    const timer = setInterval(pickRandom, 1000 * 30)
+
+    return () => clearInterval(timer)
+  }, [sayings])
   return (
-    <div className="mt-20 min-w-0 max-w-screen overflow-hidden lg:mt-[-4.5rem] lg:h-dvh lg:min-h-[800px]">
+    <div className="relative mt-20 min-w-0 max-w-screen overflow-hidden lg:mt-[-4.5rem] lg:h-dvh lg:min-h-[800px]">
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 opacity-60"
+        style={{
+          backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(156, 163, 175, 0.25) 39px, rgba(156, 163, 175, 0.25) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(156, 163, 175, 0.25) 39px, rgba(156, 163, 175, 0.25) 40px)`,
+          WebkitMaskImage: `radial-gradient(ellipse at center, black 0%, black 50%, transparent 100%)`,
+          maskImage: `radial-gradient(ellipse at center, black 0%, black 50%, transparent 100%)`,
+        }}
+      />
       <TwoColumnLayout leftContainerClassName="mt-[120px] lg:mt-0 lg:h-[15rem] lg:h-1/2">
         <>
           <m.div
@@ -186,9 +217,7 @@ const Hero = () => {
             'center text-neutral-800/80 dark:text-neutral-200/80',
           )}
         >
-          <small className="text-center">
-            当第一颗卫星飞向大气层外，我们便以为自己终有一日会征服宇宙。
-          </small>
+          <small className="text-center">{currentSaying}</small>
           <span className="mt-8 animate-bounce">
             <i className="i-mingcute-right-line rotate-90 text-2xl" />
           </span>
