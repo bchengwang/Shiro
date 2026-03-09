@@ -193,11 +193,14 @@ const FooterBottom = async () => {
             站点地图
           </a>
           <Divider className="inline" />
-
           <SubscribeTextButton>
             <Divider className="hidden md:inline" />
           </SubscribeTextButton>
         </span>
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="nofollow">
+          京ICP备2020046684号
+        </a>
+        <Divider />
         {/*<span className="mt-3 block md:mt-0 md:inline">
           Stay hungry. Stay foolish.
         </span>*/}
